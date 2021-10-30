@@ -1,0 +1,77 @@
+@mixin transform($transformprops) {
+    -webkit-transform: $transformprops;
+    -moz-transform: $transformprops;
+    transform: $transformprops;
+}
+
+@mixin dropDownArrows($color: "inherit", $thickness: 2, $direction: "down", $width: 5, $height: 5) {
+    content: "";
+    width: #{$width + px};
+    height: #{$height + px};
+    display: block;
+    border-style: solid;
+    @if $color == "inherit" {
+        border-color: inherit;
+    } @else {
+        border-color: #{var($color)};
+    }
+    border-width: #{$thickness + px} 0 0 #{$thickness + px};
+    @if $direction == "up" {
+        @include transform(rotate(45deg));
+    } @else if $direction == "left" {
+        @include transform(rotate(-45deg));
+    } @else if $direction == "right" {
+        @include transform(rotate(135deg));
+    } @else {
+        @include transform(rotate(225deg));
+    }
+}
+
+.timepicker-container{
+    width: 200px;
+    margin: auto;
+}
+
+.row-timescroller {
+    input {
+        width: 100%;
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        
+        }
+        &.form-control{
+            text-align: center;
+            &:read-only{
+                background-color: var(--white, #fff);
+            }
+        }
+
+        /* Firefox */
+        &[type=number] {
+        -moz-appearance: textfield;
+        }
+    }
+    button {
+        background: none;
+        border-width: 0px;
+        padding: 10px;
+    }
+    .up {
+        width: 100%;
+        height: 30px;
+        &::before {
+            @include dropDownArrows(--btn-bgcolor, 2, "up", 10, 10);
+            display: inline-block;
+        }
+    }
+    .down {
+        width: 100%;
+        height: 30px;
+        &::before {
+            @include dropDownArrows(--btn-bgcolor, 2, "down", 10, 10);
+            display: inline-block;
+        }
+    }
+}

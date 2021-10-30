@@ -1,0 +1,22 @@
+<div class="timepicker-container">
+    <div class="row-timepicker">
+        <label>Select Time</label>
+    </div>
+    <div class="row row-timescroller">
+        <div class="col-4">
+            <button class="up" (click)="pushHrs($event)"></button>
+            <input type="text" class="form-control" #hours [value]="hours" min="1" max="12" value="hours" readonly>
+            <button class="down" (click)="downHrs($event)"></button>
+        </div>
+        <div class="col-4">
+            <button class="up" (click)="pushMins($event)"></button>
+            <input type="text" class="form-control" #mins [value]="minutes" min="0" max="59" readonly>
+            <button class="down" (click)="downMins($event)"></button>
+        </div>
+        <div class="col-4">
+            <button class="up" (click)="toggleMeridian($event)"></button>
+            <input type="text" class="form-control" #zone [value]="zone" readonly>
+            <button class="down" (click)="toggleMeridian($event)"></button>
+        </div>
+    </div>
+</div>
